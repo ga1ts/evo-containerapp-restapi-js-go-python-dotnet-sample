@@ -7,6 +7,8 @@ on:
     branches: [ "main" ]
 env:
   CR_URI: testt1.cr.cloud.ru
+  EVO_CR_LOGIN: 79e8db9a62e88d07b96c63ef4939fc38
+  EVO_CR_PWD: e94603a27f9bc4f0b65dfcdbe614723d
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,8 +23,8 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ${{ env.CR_URI }}
-          username: ${{ secrets.EVO_CR_LOGIN }}
-          password: ${{ secrets.EVO_CR_PWD }}
+          username: ${{ env.EVO_CR_LOGIN }}
+          password: ${{ env.EVO_CR_PWD }}
 
       - name: .NET - Build and push docker image to Evolution Aritfact Registry
         uses: docker/build-push-action@v5
